@@ -31,7 +31,7 @@ platformdirs==4.3.6
 playwright==1.48.0
 pluggy==1.5.0
 psycopg2-binary==2.9.10
-pyasn1<=0.6.3
+pyasn1==0.6.3
 pycparser==2.22
 pydantic==2.9.2
 pydantic-settings==2.7.1
@@ -44,7 +44,7 @@ pytest-cov==6.0.0
 pytest-pylint==0.21.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
-python-jose==3.4.0
+python-jose==3.5.0
 python-multipart==0.0.22
 requests==2.32.3
 rsa==4.9
