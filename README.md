@@ -198,8 +198,7 @@ docker build -t <image-name> .
 docker run -it --rm -p 8000:8000 <image-name>
 ```
 
-**Docker Hub Repository:**
-[https://hub.docker.com/r/kks59/601_module10]
+**Docker Hub Repository:** https://hub.docker.com/r/kks59/601_module10
 
 ---
 
