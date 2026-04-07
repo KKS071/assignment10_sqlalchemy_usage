@@ -1,12 +1,12 @@
-#app/schemas/base.py
+# app/schemas/base.py
+
 from pydantic import BaseModel, EmailStr, Field, ConfigDict, ValidationError, model_validator
 from typing import Optional
 from uuid import UUID
 from datetime import datetime
 
-
+# Base user schema with common fields
 class UserBase(BaseModel):
-    """Base user schema with common fields"""
     first_name: str = Field(max_length=50, example="John")
     last_name: str = Field(max_length=50, example="Doe")
     email: EmailStr = Field(example="john.doe@example.com")
@@ -14,9 +14,8 @@ class UserBase(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
-
+# Password validation mixin
 class PasswordMixin(BaseModel):
-    """Mixin for password validation"""
     password: str = Field(min_length=6, max_length=128, example="SecurePass123")
 
     @model_validator(mode="before")
@@ -24,7 +23,7 @@ class PasswordMixin(BaseModel):
     def validate_password(cls, values: dict) -> dict:
         password = values.get("password")
         if not password:
-            raise ValidationError("Password is required", model=cls) # pragma: no cover
+            raise ValidationError("Password is required", model=cls)  # pragma: no cover
         if len(password) < 6:
             raise ValueError("Password must be at least 6 characters long")
         if not any(char.isupper() for char in password):
@@ -35,14 +34,12 @@ class PasswordMixin(BaseModel):
             raise ValueError("Password must contain at least one digit")
         return values
 
-
+# Schema for creating a new user
 class UserCreate(UserBase, PasswordMixin):
-    """Schema for user creation"""
     pass
 
-
+# Schema for login input
 class UserLogin(PasswordMixin):
-    """Schema for user login"""
     username: str = Field(
         description="Username or email",
         min_length=3,

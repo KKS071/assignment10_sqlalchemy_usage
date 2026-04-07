@@ -5,7 +5,7 @@ from uuid import UUID
 from datetime import datetime
 from pydantic import BaseModel, EmailStr, ConfigDict
 
-# Schema for returning user info
+# User info response schema
 class UserResponse(BaseModel):
     id: UUID
     username: str
@@ -17,9 +17,9 @@ class UserResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
 
-    model_config = ConfigDict(from_attributes=True)  # Map from ORM objects
+    model_config = ConfigDict(from_attributes=True)  # Map ORM objects to Pydantic
 
-# Schema for auth token response
+# Auth token response schema
 class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
@@ -45,11 +45,11 @@ class Token(BaseModel):
         }
     )
 
-# Schema for JWT token payload
+# JWT token payload schema
 class TokenData(BaseModel):
     user_id: Optional[UUID] = None
 
-# Schema for user login input
+# User login input schema
 class UserLogin(BaseModel):
     username: str
     password: str
