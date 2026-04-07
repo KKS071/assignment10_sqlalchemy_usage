@@ -1,3 +1,4 @@
+#app/schemas/base.py
 from pydantic import BaseModel, EmailStr, Field, ConfigDict, ValidationError, model_validator
 from typing import Optional
 from uuid import UUID

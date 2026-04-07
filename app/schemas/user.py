@@ -1,10 +1,12 @@
+# app/schemas/user.py
+
 from typing import Optional
 from uuid import UUID
 from datetime import datetime
 from pydantic import BaseModel, EmailStr, ConfigDict
 
+# Schema for returning user info
 class UserResponse(BaseModel):
-    """Schema for user response data"""
     id: UUID
     username: str
     email: EmailStr
@@ -15,11 +17,10 @@ class UserResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
 
-    model_config = ConfigDict(from_attributes=True)  # Enable mapping from ORM objects
+    model_config = ConfigDict(from_attributes=True)  # Map from ORM objects
 
-
+# Schema for auth token response
 class Token(BaseModel):
-    """Schema for authentication token response"""
     access_token: str
     token_type: str = "bearer"
     user: UserResponse
@@ -44,14 +45,12 @@ class Token(BaseModel):
         }
     )
 
-
+# Schema for JWT token payload
 class TokenData(BaseModel):
-    """Schema for JWT token payload"""
     user_id: Optional[UUID] = None
 
-
+# Schema for user login input
 class UserLogin(BaseModel):
-    """Schema for user login"""
     username: str
     password: str
 
